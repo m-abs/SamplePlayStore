@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             dm.setHeaderTitle("Section " + i);
 
             ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();
-            for (int j = 0; j <= 9; j++) {
+            for (int j = 0; j <= 100; j++) {
                 singleItem.add(new SingleItemModel("Item " + j, "URL " + j));
             }
 
