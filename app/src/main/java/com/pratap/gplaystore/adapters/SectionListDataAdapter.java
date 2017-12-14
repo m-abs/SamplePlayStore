@@ -22,16 +22,18 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
     private ArrayList<SingleItemModel> itemsList;
     private Context mContext;
+    private String sectionName;
 
-    public SectionListDataAdapter(Context context, ArrayList<SingleItemModel> itemsList) {
+    public SectionListDataAdapter(Context context, ArrayList<SingleItemModel> itemsList, String sectionName) {
         this.itemsList = itemsList;
         this.mContext = context;
+        this.sectionName = sectionName;
     }
 
     @Override
     public SingleItemRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_single_card, null);
-        SingleItemRowHolder mh = new SingleItemRowHolder(v);
+        SingleItemRowHolder mh = new SingleItemRowHolder(v, this.sectionName);
         return mh;
     }
 
@@ -62,20 +64,22 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
         protected ImageView itemImage;
 
+        protected String sectionName;
 
-        public SingleItemRowHolder(View view) {
+
+        public SingleItemRowHolder(View view, final String sectionName) {
             super(view);
 
             this.tvTitle = (TextView) view.findViewById(R.id.tvTitle);
             this.itemImage = (ImageView) view.findViewById(R.id.itemImage);
-
+            this.sectionName = sectionName;
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
 
-                    Toast.makeText(v.getContext(), tvTitle.getText(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), sectionName + " - " + tvTitle.getText(), Toast.LENGTH_SHORT).show();
 
                 }
             });
